@@ -1,0 +1,42 @@
+{
+    "TableName": "rabbits",
+    "KeySchema": [
+        {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+        }
+    ],
+    "AttributeDefinitions": [
+        {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "UserId",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "Name",
+            "AttributeType": "S"
+        }
+    ],
+    "GlobalSecondaryIndexes": [
+        {
+            "IndexName": "UserRabbitsIndex",
+            "KeySchema": [
+                {
+                    "AttributeName": "UserId",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "Name",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "ALL"
+            }
+        }
+    ],
+    "BillingMode": "PAY_PER_REQUEST"
+}

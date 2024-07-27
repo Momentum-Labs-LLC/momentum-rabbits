@@ -1,0 +1,2 @@
+global using DynamoDbPage = System.Collections.Generic.Dictionary<string, Amazon.DynamoDBv2.Model.AttributeValue>;
+global using DynamoDbDocument = System.Collections.Generic.Dictionary<string, Amazon.DynamoDBv2.Model.AttributeValue>;

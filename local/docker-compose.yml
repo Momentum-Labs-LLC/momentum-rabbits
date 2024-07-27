@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  dynamodb-rabbits:
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: rabbits-dynamodb
+    ports:
+      - "9876:8000"
+    volumes:
+      - "./.docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+  cognito-rabbits:
+    image: jagregory/cognito-local:latest
+    container_name: rabbits-cognito
+    ports: 
+      - "9229:9229"
+    volumes:
+      - "./.docker/cognito:/app/.cognito"
+
+    

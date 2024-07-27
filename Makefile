@@ -7,6 +7,9 @@ GH_TOKEN =
 setup-github-nuget:
 	dotnet nuget add source --username ${GH_USER} --password ${GH_TOKEN} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${ORG_NAMESPACE}/index.json"
 
+nuget-clear-cache:
+	dotnet nuget locals all --clear
+
 clean: 
 	dotnet clean
 

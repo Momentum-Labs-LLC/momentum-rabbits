@@ -1,39 +1,11 @@
 # Setup
 
-Required Components.
-- dotnet sdk
-- make - Can install via chocolatey
-- reportgenerator `dotnet tool install --global dotnet-reportgenerator-globaltool`
+# Local DynamoDb Tables
+You will likely need to create/destroy a local aws profile. You don't need actually key/secret or account id values.
+`aws dynamodb create-table --endpoint-url http://localhost:9876 --profile=local --cli-input-json file://local/rabbits.json`
+`aws dynamodb delete-table --table-name rabbits --endpoint-url http://localhost:9876 --profile=local`
 
-After using this template repository to create a new repository you will need to setup your dotnet solution/project.
 
-To create a dotnet project/sln use the `dotnet new` command.
-
-The `Makefile` assumes there will be a solution with multiple projects. At least one for a project and one for testing the project.
-
-`dotnet new sln -n Momentum.SOLUTION_NAME`
-
-If you are not sure which type of project to create use `dotnet new --list` to see the list of project templates currently available on your machine. More project templates can be downloaded. 
-
-If you are creating a general library that will become a nuget package use:
-`dotnet new classlib -n Momentum.{LIBRARY_NAME} -o src/Momentum.{LIBRARY_NAME}`
-
-Add this project to the solution.
-`dotnet sln add src/Momentum.{LIBRARY_NAME}`
-
-Create a test project for testing this project.
-`dotnet new xunit -n Momentum.{LIBRARY_NAME}.Tests -o tests tests/Momentum.{LIBRARY_NAME}.Tests`
-
-Add the test project to the solution.
-`dotnet sln add tests/Momentum.{LIBRARY_NAME}.Tests`
-
-Add the project as a dependency to the test project.
-`cd tests/Momentum.{LIBRARY_NAME}.Tests`
-`dotnet add reference ../../src/Momentum.{LIBRARY_NAME}`
-
-Other useful packages for your test project are:
-- Moq - Useful for mocking interfaces `dotnet add package Moq`
-- Coverlet - Building coverage reports - `dotnet add package Coverlet.MsBuild`
 
 # Makefile
 Found at ./Makefile
