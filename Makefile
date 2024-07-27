@@ -38,3 +38,5 @@ pack:
 publish:
 	dotnet nuget push nuget/*.nupkg -s github
 
+local-up: 
+	cd local && docker compose up

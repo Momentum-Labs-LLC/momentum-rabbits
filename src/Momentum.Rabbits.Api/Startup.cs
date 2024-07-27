@@ -1,4 +1,5 @@
-﻿using Momentum.NodaTime;
+﻿using Amazon.Extensions.CognitoAuthentication;
+using Momentum.NodaTime;
 using Momentum.Rabbits.DynamoDb.Rabbits;
 
 namespace Momentum.Rabbits.Api
@@ -15,14 +16,25 @@ namespace Momentum.Rabbits.Api
         // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
+            // Adds your own instance of Amazon Cognito clients 
+            // cognitoIdentityProvider and cognitoUserPool are variables you would have instanciated yourself
+            var provider = new Amazon.CognitoIdentityProvider.AmazonCognitoIdentityProviderClient();
+            var cognitoUserPool = new CognitoUserPool(
+                Configuration.GetValue<string>("COGNITO_USER_POOL_ID"),
+                Configuration.GetValue<string>("COGNITO_USER_POOL_CLIENT_ID"),
+                provider
+            );
+            services.AddSingleton<Amazon.CognitoIdentityProvider.IAmazonCognitoIdentityProvider>(provider);
+            services.AddSingleton<CognitoUserPool>(cognitoUserPool);
+
             services.AddCognitoIdentity();
 
             services
                 .AddLogging(config => 
                 {
-                    config.AddFilter("Microsoft", LogLevel.Warning);
-                    config.AddFilter("System", LogLevel.Warning);
-                    config.SetMinimumLevel(LogLevel.Error);
+                    config.AddFilter("Microsoft", LogLevel.Debug);
+                    config.AddFilter("System", LogLevel.Debug);
+                    config.SetMinimumLevel(LogLevel.Debug);
                     config.AddLambdaLogger();
                 })
                 .AddMemoryCache()
@@ -49,7 +61,7 @@ namespace Momentum.Rabbits.Api
 
             app.UseRouting();
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
             app.UseAuthorization();
             app.UseCors();
             app.UseEndpoints(endpoints =>

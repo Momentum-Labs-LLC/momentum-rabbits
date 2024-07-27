@@ -1,0 +1,29 @@
+{
+  "Clients": {
+    "c4mipq1ejf2ynxyzy912td4n3": {
+      "ClientId": "c4mipq1ejf2ynxyzy912td4n3",
+      "ClientName": "rabbit-api",
+      "CreationDate": "2024-05-06T18:10:42.934Z",
+      "LastModifiedDate": "2024-05-06T18:10:42.934Z",
+      "TokenValidityUnits": {
+        "AccessToken": "hours",
+        "IdToken": "minutes",
+        "RefreshToken": "days"
+      },
+      "UserPoolId": "local_1LABMcfR"
+    },
+    "d580z48bl0hqolyj3ihlw4ode": {
+      "ClientId": "d580z48bl0hqolyj3ihlw4ode",
+      "ClientName": "rabbits-user-pool-client",
+      "ClientSecret": "bilv5akmmn99o4k9njqctt7m8",
+      "CreationDate": "2024-05-06T18:52:46.400Z",
+      "LastModifiedDate": "2024-05-06T18:52:46.400Z",
+      "TokenValidityUnits": {
+        "AccessToken": "hours",
+        "IdToken": "minutes",
+        "RefreshToken": "days"
+      },
+      "UserPoolId": "local_5svuAwkP"
+    }
+  }
+}
